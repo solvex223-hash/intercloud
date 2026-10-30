@@ -294,6 +294,103 @@
 </main>
 
 <script src="js/main.js"></script>
-<script src="js/hero-slider.js"></script>
+<script>
+/* Intercloud hero slider — standalone, does not touch main.js */
+(function () {
+  var hero = document.querySelector('.hero--slider');
+  if (!hero) return;
+
+  var slides = Array.prototype.slice.call(hero.querySelectorAll('.hero__slide'));
+  var dotsWrap = hero.querySelector('.hero__dots');
+  var prevBtn = hero.querySelector('.hero__arrow--prev');
+  var nextBtn = hero.querySelector('.hero__arrow--next');
+  var DELAY = 5000; // time on each slide, in milliseconds (5 seconds)
+    var current = 0;
+  var timer = null;
+  var dots = [];
+
+  hero.style.setProperty('--slide-time', DELAY + 'ms');
+
+  slides.forEach(function (_, i) {
+    var d = document.createElement('button');
+    d.type = 'button';
+    d.className = 'hero__dot';
+    d.setAttribute('role', 'tab');
+    d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    d.addEventListener('click', function () { goTo(i, true); });
+    dotsWrap.appendChild(d);
+    dots.push(d);
+  });
+
+  function show(i) {
+    slides.forEach(function (s, n) {
+      var on = n === i;
+      s.classList.toggle('is-active', on);
+      s.setAttribute('aria-hidden', on ? 'false' : 'true');
+      // keep hidden slides' links out of the tab order
+      Array.prototype.forEach.call(s.querySelectorAll('a'), function (a) {
+        a.tabIndex = on ? 0 : -1;
+      });
+    });
+    dots.forEach(function (d, n) {
+      d.classList.toggle('is-active', n === i);
+      d.classList.remove('is-timing');
+      d.setAttribute('aria-selected', n === i ? 'true' : 'false');
+    });
+    // restart the progress bar on the active dot
+    void dots[i].offsetWidth;
+    if (timer) dots[i].classList.add('is-timing');
+    current = i;
+  }
+
+  function goTo(i, user) {
+    show((i + slides.length) % slides.length);
+    if (user) restart();
+  }
+
+  function stop() {
+    if (timer) { clearInterval(timer); timer = null; }
+    dots.forEach(function (d) { d.classList.remove('is-timing'); });
+  }
+
+  function start() {
+    if (timer || document.hidden) return;
+    timer = setInterval(function () { goTo(current + 1); }, DELAY);
+    dots[current].classList.remove('is-timing');
+    void dots[current].offsetWidth;
+    dots[current].classList.add('is-timing');
+  }
+
+  function restart() { stop(); start(); }
+
+  prevBtn.addEventListener('click', function () { goTo(current - 1, true); });
+  nextBtn.addEventListener('click', function () { goTo(current + 1, true); });
+
+  // pause when the tab is in the background
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) stop(); else start();
+  });
+
+  // keyboard arrows
+  hero.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') goTo(current - 1, true);
+    if (e.key === 'ArrowRight') goTo(current + 1, true);
+  });
+
+  // touch swipe
+  var startX = null;
+  hero.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+  hero.addEventListener('touchend', function (e) {
+    if (startX === null) return;
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 50) goTo(current + (dx < 0 ? 1 : -1), true);
+    startX = null;
+  });
+
+  show(0);
+  start();
+})();
+
+</script>
 </body>
 </html>
