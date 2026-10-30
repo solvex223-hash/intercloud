@@ -264,3 +264,33 @@ p{margin:0;}
   .reveal{opacity:1;transform:none;transition:none;}
   .flow-dot{animation:none !important;}
 }
+
+/* ===== HERO: solar house image ===== */
+.media-slot--hero img{
+  object-position:right center;
+}
+
+/* dark navy on the left for the text, clear on the right so the house shows */
+.hero__scrim{
+  background:
+    linear-gradient(90deg,
+      rgba(10,24,54,0.94) 0%,
+      rgba(10,24,54,0.78) 35%,
+      rgba(10,24,54,0.25) 68%,
+      rgba(10,24,54,0.05) 100%),
+    linear-gradient(180deg,
+      rgba(10,24,54,0.35) 0%,
+      rgba(10,24,54,0) 35%,
+      rgba(10,24,54,0.55) 100%);
+}
+
+@media (max-width:860px){
+  .media-slot--hero img{ object-position:72% center; }
+  /* on phones the text sits over the image, so darken it evenly */
+  .hero__scrim{
+    background:linear-gradient(180deg,
+      rgba(10,24,54,0.55) 0%,
+      rgba(10,24,54,0.78) 55%,
+      rgba(10,24,54,0.95) 100%);
+  }
+}
