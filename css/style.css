@@ -346,7 +346,7 @@ p{margin:0;}
   transform:scaleX(0);transform-origin:left;
 }
 .hero__dot.is-active::after{transform:scaleX(1);}
-.hero__dot.is-active.is-timing::after{animation:heroDot var(--slide-time,6500ms) linear forwards;}
+.hero__dot.is-active.is-timing::after{animation:heroDot var(--slide-time,5000ms) linear forwards;}
 @keyframes heroDot{from{transform:scaleX(0);}to{transform:scaleX(1);}}
 .hero__arrow{
   width:40px;height:40px;border-radius:50%;cursor:pointer;
