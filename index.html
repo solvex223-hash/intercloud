@@ -33,22 +33,71 @@
 
 <main id="top">
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="media-slot media-slot--hero" data-label="assets/hero.jpg — solar-powered home">
-      <span class="media-slot__label">Drop <code>assets/hero.jpg</code> here</span>
-      <img src="assets/hero.jpg" alt="Modern home with Intercloud solar panels installed on the roof" onerror="this.style.display='none'">
-    </div>
-    <div class="hero__scrim"></div>
-    <div class="hero__content reveal">
-      <p class="eyebrow">Solar · CCTV · Connectivity</p>
-      <h1 class="hero__title">Power your home.<br>Secure it.<br>Keep it connected.</h1>
-      <p class="hero__sub">Intercloud sells, installs and maintains solar power, CCTV security and internet systems for homes, offices, hotels, schools and estates, so your lights stay on and your property stays protected.</p>
-      <div class="hero__ctas">
-        <a class="btn btn--primary" href="tel:+2348140042329">Call 0814 004 2329</a>
-        <a class="btn btn--ghost" href="#work">See our work</a>
+  <!-- HERO SLIDER -->
+  <section class="hero hero--slider" aria-roledescription="carousel" aria-label="Intercloud services">
+    <div class="hero__slides">
+
+      <!-- Slide 1: Solar -->
+      <div class="hero__slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 3">
+        <div class="media-slot media-slot--hero" data-label="assets/hero-solar.jpg">
+          <span class="media-slot__label">Drop <code>assets/hero-solar.jpg</code> here</span>
+          <img src="assets/hero-solar.jpg" alt="Modern home with solar panels installed on the roof" onerror="this.style.display='none'">
+        </div>
+        <div class="hero__scrim"></div>
+        <div class="hero__content">
+          <p class="eyebrow">Solar Power</p>
+          <h1 class="hero__title">Switch off the generator.<br>Switch on the sun.</h1>
+          <p class="hero__sub">No more fuel queues, noise or sudden blackouts. We design and install solar systems that keep your home, office or hotel running day and night.</p>
+          <div class="hero__ctas">
+            <a class="btn btn--primary" href="tel:+2348140042329">Get my solar quote</a>
+            <a class="btn btn--ghost" href="#solar">Explore solar</a>
+          </div>
+          <p class="hero__quote">“Quality you can see, service you can trust.”</p>
+        </div>
       </div>
-      <p class="hero__quote">“Quality you can see, service you can trust.”</p>
+
+      <!-- Slide 2: CCTV -->
+      <div class="hero__slide" role="group" aria-roledescription="slide" aria-label="2 of 3">
+        <div class="media-slot media-slot--hero" data-label="assets/hero-cctv.jpg">
+          <span class="media-slot__label">Drop <code>assets/hero-cctv.jpg</code> here</span>
+          <img src="assets/hero-cctv.jpg" alt="CCTV security camera protecting a property" onerror="this.style.display='none'">
+        </div>
+        <div class="hero__scrim"></div>
+        <div class="hero__content">
+          <p class="eyebrow">CCTV &amp; Security</p>
+          <h1 class="hero__title">Nothing gets past<br>your eyes.</h1>
+          <p class="hero__sub">Sharp cameras, solar-powered options and live viewing on your phone, so you can check on your home, shop or estate from anywhere, anytime.</p>
+          <div class="hero__ctas">
+            <a class="btn btn--primary" href="tel:+2348140042329">Secure my property</a>
+            <a class="btn btn--ghost" href="#security">See security solutions</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Starlink / Connectivity -->
+      <div class="hero__slide" role="group" aria-roledescription="slide" aria-label="3 of 3">
+        <div class="media-slot media-slot--hero" data-label="assets/hero-starlink.jpg">
+          <span class="media-slot__label">Drop <code>assets/hero-starlink.jpg</code> here</span>
+          <img src="assets/hero-starlink.jpg" alt="Starlink dish installed on a rooftop" onerror="this.style.display='none'">
+        </div>
+        <div class="hero__scrim"></div>
+        <div class="hero__content">
+          <p class="eyebrow">Starlink &amp; Connectivity</p>
+          <h1 class="hero__title">Slow internet?<br>Not anymore.</h1>
+          <p class="hero__sub">Starlink, WiFi, DStv and GOtv, installed properly and ready from day one. Stream, work and stay connected without the stress.</p>
+          <div class="hero__ctas">
+            <a class="btn btn--primary" href="tel:+2348140042329">Get connected today</a>
+            <a class="btn btn--ghost" href="#connectivity">Explore connectivity</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="hero__controls">
+      <button class="hero__arrow hero__arrow--prev" type="button" aria-label="Previous slide">&#8592;</button>
+      <div class="hero__dots" role="tablist" aria-label="Choose slide"></div>
+      <button class="hero__arrow hero__arrow--next" type="button" aria-label="Next slide">&#8594;</button>
     </div>
   </section>
 
@@ -245,5 +294,6 @@
 </main>
 
 <script src="js/main.js"></script>
+<script src="js/hero-slider.js"></script>
 </body>
 </html>
