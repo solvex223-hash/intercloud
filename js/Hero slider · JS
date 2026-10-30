@@ -7,9 +7,8 @@
   var dotsWrap = hero.querySelector('.hero__dots');
   var prevBtn = hero.querySelector('.hero__arrow--prev');
   var nextBtn = hero.querySelector('.hero__arrow--next');
-  var DELAY = 6500; // time on each slide, in milliseconds
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var current = 0;
+  var DELAY = 5000; // time on each slide, in milliseconds (5 seconds)
+    var current = 0;
   var timer = null;
   var dots = [];
 
@@ -58,7 +57,7 @@
   }
 
   function start() {
-    if (reduceMotion || timer || document.hidden) return;
+    if (timer || document.hidden) return;
     timer = setInterval(function () { goTo(current + 1); }, DELAY);
     dots[current].classList.remove('is-timing');
     void dots[current].offsetWidth;
@@ -69,12 +68,6 @@
 
   prevBtn.addEventListener('click', function () { goTo(current - 1, true); });
   nextBtn.addEventListener('click', function () { goTo(current + 1, true); });
-
-  // pause while the visitor hovers or focuses inside the hero
-  hero.addEventListener('mouseenter', stop);
-  hero.addEventListener('mouseleave', start);
-  hero.addEventListener('focusin', stop);
-  hero.addEventListener('focusout', start);
 
   // pause when the tab is in the background
   document.addEventListener('visibilitychange', function () {
